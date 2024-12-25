@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas🎅🎄</title>
+    <style>
+        body {
+            background-color: #c58181;
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-image: url('mas.jpg'); /* Keep the original background */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        header {
+            background-color: rgba(192, 57, 43, 0.8);
+            padding: 20px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px #000;
+            animation: fadeIn 2s;
+            z-index: 10;
+        }
+        .container {
+            position: relative;
+            margin: 50px auto;
+            width: 80%;
+            max-width: 600px;
+            padding: 30px;
+            z-index: 10;
+        }
+        .tree {
+            width: 150px;
+            margin: 20px 0;
+            animation: bounce 1s infinite alternate;
+            transition: transform 0.3s;
+        }
+        .tree:hover {
+            transform: rotate(10deg);
+        }
+        .message {
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+        footer {
+            background-color: #c0392b;
+            color: white;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+        button {
+            background-color: #ffcc00;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #ff9900;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+        /* Snowflakes falling from top */
+        .snowflake {
+            position: absolute;
+            color: #ffffff;
+            font-size: 1.5em;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-100vh); }
+            100% { transform: translateY(100vh); }
+        }
+        /* Twinkle Lights RGB Animation */
+        .light {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            position: absolute;
+            animation: twinkle 1.5s infinite, move 1s infinite alternate;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.5; background-color: rgb(255, 0, 0); }
+            25% { opacity: 1; background-color: rgb(0, 255, 0); }
+            50% { opacity: 0.5; background-color: rgb(0, 0, 255); }
+            75% { opacity: 1; background-color: rgb(255, 255, 0); }
+            100% { opacity: 0.5; background-color: rgb(255, 0, 255); }
+        }
+        @keyframes move {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(2px, -2px); }
+            100% { transform: translate(0, 0); }
+        }
+        /* Modal styles */
+        .modal {
+            display: none; 
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; 
+            background-color: rgba(0, 0, 0, 0.7);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            color: #000;
+            text-align: center;
+            border-radius: 10px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Sticker Styles (absolute positioning on the page) */
+        .sticker {
+            position: absolute;
+            width: 80px;
+            animation: float 5s ease-in-out infinite;
+            cursor: pointer;
+        }
+
+        /* Move sticker 1 a bit down */
+        .sticker1 {
+            top: 25%;    /* Moved down from 15% to 25% */
+            left: 10%;   /* Keeping the left position unchanged */
+        }
+
+        /* Move sticker 2 a bit to the right */
+        .sticker2 {
+            top: 40%;    /* Keeping the top position unchanged */
+            right: 8%;   /* Moved from 10% to 5% to shift the sticker further to the right */
+        }
+
+        /* Move sticker 3 a bit down */
+        .sticker3 {
+            top: 5%;    /* Moved up from 10% to 15% to move it slightly down */
+            left: 80%;      /* Keeping the left position unchanged */
+            transform: translateX(-50%); /* To keep it horizontally centered */
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        ❄️Happy Merry Christmas!❄️
+    </header>
+    <div class="container">
+        <img src="box.jpg" alt="Christmas Tree" class="tree">
+        <div class="message"></div>
+        <button onclick="openModal()">Click Here for surprise!</button>
+    </div>
+    <footer>
+        <strong>To:Riya</strong>
+    </footer>
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="holidayWishesList"></div> <!-- All holiday wishes will be displayed here -->
+        </div>
+    </div>
+
+    <!-- Audio Controls with Mute Option -->
+    <audio controls autoplay>
+        <source src="song.mp3" type="audio/ogg">
+        <source src="song.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    
+    <script>
+        // Holiday wishes array with the updated wish
+        const holidayWishes = [
+            'Wishing you a very Merry Christmas! I hope your day is filled with love, happiness, and everything you enjoy. May the new year bring you lots of joy and good times!','Kmean luy tinh gift oy te mean tah ah ng luy tinh skin knong game os hx👌👌'
+            
+        ];   
+
+        // Create snowflakes
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+            snowflake.innerHTML = '❄';
+            snowflake.style.left = Math.random() * 100 + 'vw'; // Random position horizontally
+            snowflake.style.fontSize = Math.random() * 1.5 + 0.5 + 'em';
+            snowflake.style.animationDuration = Math.random() * 3 + 2 + 's'; // Random fall duration
+            document.body.appendChild(snowflake);
+
+            // Remove snowflake after it falls
+            setTimeout(() => {
+                snowflake.remove();
+            }, 5000);
+        }
+
+        // Generate snowflakes every 300ms
+        setInterval(createSnowflake, 300);
+
+        // Create Twinkling Lights
+        function createTwinkleLight() {
+            const light = document.createElement('div');
+            light.className = 'light';
+            light.style.left = Math.random() * 100 + 'vw';
+            light.style.top = Math.random() * 100 + 'vh';
+            document.body.appendChild(light);
+
+            // Remove the light after some time
+            setTimeout(() => {
+                light.remove();
+            }, 1500);
+        }
+
+        // Generate twinkle lights every 300ms
+        setInterval(createTwinkleLight, 300);
+
+        // Function to open the modal and display the updated holiday wish
+        function openModal() {
+            const holidayWishesList = document.getElementById('holidayWishesList');
+            holidayWishesList.innerHTML = ''; // Clear any previous content
+
+            // Loop through each wish and add it to the modal
+            holidayWishes.forEach(function(wish) {
+                const wishElement = document.createElement('p');
+                wishElement.innerText = wish;
+                holidayWishesList.appendChild(wishElement);
+            });
+
+            // Display the modal
+            document.getElementById('myModal').style.display = "block";
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById('myModal').style.display = "none";
+        }
+
+        // Close the modal when the user clicks anywhere outside of the modal
+        window.onclick = function(event) {
+            const modal = document.getElementById('myModal');
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
